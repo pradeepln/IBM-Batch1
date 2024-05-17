@@ -6,6 +6,7 @@ public class SystemUtils {
 		//System.out.println(System.currentTimeMillis());
 		System.out.println(System.getProperty("user.name"));
 		System.out.println(System.getProperties());
+		System.out.println(System.getProperty("ibmprop"));
 
 	}
 
