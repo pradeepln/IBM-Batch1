@@ -1,8 +1,13 @@
 package com.ibm.training.io;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 
 public class MyDOS {
@@ -17,22 +22,59 @@ public class MyDOS {
 		case "copy":
 			performCopy(args);
 			break;
+		case "type":
+			performType(args);
+			break;
 		default:
 			System.out.println("Unknown Command.");
 		}
 
 	}
 
-	private static void performCopy(String[] args) throws IOException {
+	private static void performType(String[] args) throws IOException {
+		if(args.length < 2) {
+			System.out.println("Usage:\ntype <filename>");
+			return;
+		}
+		
+		try(BufferedReader in = new BufferedReader(new FileReader(args[1]))){
+			String line;
+			while((line = in.readLine()) != null) {
+				System.out.println(line);
+			}
+		}
+		
+	}
+
+	private static void performCopy(String[] args) throws IOException  {
+		long start = System.currentTimeMillis();
 		if(args.length >= 3) {
 			File srcFile = new File(args[1]);
 			File destFile = new File(args[2]);
-			FileInputStream in = new FileInputStream(srcFile);
-			FileOutputStream out = new FileOutputStream(destFile);
-			int aByte;
-			while((aByte = in.read()) != -1) {
-				out.write(aByte);
+
+//			FileInputStream in = new FileInputStream(srcFile);
+//			FileOutputStream out = new FileOutputStream(destFile);
+			
+			try(
+					BufferedInputStream bufIn = new BufferedInputStream(new FileInputStream(srcFile));
+					BufferedOutputStream bufOut = new BufferedOutputStream(new FileOutputStream(destFile));
+				) {
+				
+				int aByte;
+	//			while((aByte = in.read()) != -1) {
+	//				out.write(aByte);
+	//			}
+				
+				while((aByte = bufIn.read()) != -1) {
+					bufOut.write(aByte);
+				}
+			
+				//bufOut.flush(); //no need to flush if .close is being called
 			}
+		
+			
+			long end = System.currentTimeMillis();
+			System.out.println("Copying took "+(end - start)+" ms.");
 		}else {
 			System.out.println("Usage:\ncopy <srcFile> <destFile>");
 		}
