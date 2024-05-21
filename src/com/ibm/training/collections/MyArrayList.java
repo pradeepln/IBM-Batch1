@@ -5,6 +5,9 @@ public class MyArrayList { //imaging implements List
 	Object[] contents = new Object[10];
 	int lastIndex = -1;
 	
+	public Object get(int index) {
+		return contents[index];
+	}
 	public void add(Object anElement) {
 		increaseCapacityOfArrayIfNeeded();
 		contents[++lastIndex] = anElement;		

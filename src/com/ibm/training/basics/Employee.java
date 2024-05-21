@@ -23,6 +23,10 @@ public class Employee {
 		System.out.println("------- inside 2 arg constructor ------");
 		
 	}
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", name=" + name + ", salary=" + salary + "]";
+	}
 	
 	
 }

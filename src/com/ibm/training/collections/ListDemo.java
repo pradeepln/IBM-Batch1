@@ -1,6 +1,9 @@
 package com.ibm.training.collections;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 import com.ibm.training.basics.Employee;
 
@@ -8,7 +11,54 @@ public class ListDemo {
 
 	public static void main(String[] args) {
 		//simpleRawList();
-		specificListDemo();
+		//specificListDemo();
+		List<String> list = new ArrayList<>();
+		list.add("abc");
+		list.add("xyz");
+		list.add("tvf");
+		someAlgo(list);
+	}
+
+	private static void someAlgo(List<String> list) {
+		//some
+		list.add(0, "uno");
+		
+		//some more
+		list.remove(1);
+		
+		//some more more
+		String some = list.get(3);
+		
+		//loop and process every element
+		//DON'T DO THIS : DON'T LOOP USING GET(I)
+		for(int i=0;i<list.size();i++) {
+			String aValue = list.get(i);
+			//do something with aValue
+		}
+		
+		//Explicit Iterator - this is efficient
+		Iterator<String> it = list.iterator();
+		
+		while(it.hasNext()) {
+			String aValue = it.next();
+			//do something with aValue
+			if(aValue.startsWith("x")) {
+				it.remove();
+			}
+		}
+		
+		//Implicit Iterator - Enhanced For Loop - this is efficient
+		
+		for(String aValue : list) {
+			//do something with aValue
+		}
+		
+		//Compiler converts the above for-each loop into something like following
+		String aValue2;
+		for(Iterator<String> it2=list.iterator();it2.hasNext();aValue2=it2.next()) {
+			
+		}
+		
 	}
 
 	private static void specificListDemo() {

@@ -23,12 +23,14 @@ public class StringLiterals {
 		System.out.println("______________________________________________");
 		
 		System.out.println("s1 equals s2 ? "+(s1.equals(s2)));
+		System.out.println("s1 hc = "+s1.hashCode());
+		System.out.println("s2 hc = "+s2.hashCode());
 		
-
 		System.out.println("s1 equals s3 ? "+(s1.equals(s3)));
-		
+		System.out.println("s3 hc = "+s3.hashCode());
 		
 		System.out.println("s3 equals s4 ? "+(s3.equals(s4)));
+		System.out.println("s4 hc = "+s4.hashCode());
 		
 		System.out.println("s3 equalsIgnoreCase s4 "+(s3.equalsIgnoreCase(s4)));
 		
