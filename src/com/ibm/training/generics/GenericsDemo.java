@@ -1,8 +1,12 @@
 package com.ibm.training.generics;
 
+import java.util.Comparator;
+
 public class GenericsDemo {
 	
-	
+	public static <T> void sort(T[] arr,Comparator<T> c) {
+		
+	}
 
 	public static void main(String[] args) {
 		Stack<Integer> s = new FixedArrayStack<Integer>(10);
