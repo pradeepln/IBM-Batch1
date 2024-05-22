@@ -1,6 +1,6 @@
 package com.ibm.training.basics;
 
-public class Employee {
+public class Employee implements Comparable<Employee> {
 
 	int id;
 	String name = "TBD";
@@ -26,6 +26,38 @@ public class Employee {
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", name=" + name + ", salary=" + salary + "]";
+	}
+	
+	@Override
+	public int compareTo(Employee other) {
+		//System.out.println(">>>> sort called compareTo on employee"+this.id+" with param emplyee"+other.id);
+		if(this.id > other.id) {
+			return 1;
+		}else if(other.id > this.id) {
+			return -1;
+		}else {
+			return 0;
+		}
+		
+		//return this.id - other.id;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public float getSalary() {
+		return salary;
+	}
+	public void setSalary(float salary) {
+		this.salary = salary;
 	}
 	
 	

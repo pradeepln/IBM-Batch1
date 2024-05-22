@@ -1,15 +1,16 @@
 package com.ibm.training.collections;
 
-import java.util.LinkedHashSet;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class SetDemo {
 
 	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
 		
-		Set<String> uniqueWords = new LinkedHashSet<>();
+//		Set<String> uniqueWords = new LinkedHashSet<>();
+		TreeSet<String> uniqueWords = new TreeSet<>();
 		
 		while(true) {
 			System.out.println("Enter a unique word: ");
@@ -24,7 +25,11 @@ public class SetDemo {
 		
 		System.out.println("___________ all unique words ___________");
 		//uniqueWords.get(0);
-		for(String aWord : uniqueWords) {
+//		for(String aWord : uniqueWords) {
+//			System.out.println(aWord);
+//		}
+		
+		for(String aWord : uniqueWords.descendingSet()) {
 			System.out.println(aWord);
 		}
 		
