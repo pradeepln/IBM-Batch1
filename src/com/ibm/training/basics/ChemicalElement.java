@@ -1,6 +1,6 @@
 package com.ibm.training.basics;
 
-public class ChemicalElement {
+public class ChemicalElement implements Comparable<ChemicalElement> {
 	
 	private int atomicNumber;
 	private String symbol;
@@ -95,6 +95,11 @@ public class ChemicalElement {
 		return true;
 	}
 
-	
+	@Override
+	public int compareTo(ChemicalElement other) {
+		
+		//return this.atomicNumber - other.atomicNumber;
+		return this.symbol.compareTo(other.symbol);
+	}
 	
 }
