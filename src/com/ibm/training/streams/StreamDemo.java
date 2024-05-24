@@ -1,5 +1,6 @@
 package com.ibm.training.streams;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -27,7 +28,17 @@ public class StreamDemo {
 								.map(d -> Math.sin(d))
 								.toList();
 		System.out.println(dList);
-
+		
+		List<String> wordList = Arrays.asList(words);
+		
+		String[] bigWords = 
+		wordList
+			.stream()
+			.filter(s -> s.length() > 3)
+			.map(s -> s.toUpperCase())
+			.toArray(String[]::new);
+		
+		System.out.println(Arrays.asList(bigWords));
 	}
 
 }
