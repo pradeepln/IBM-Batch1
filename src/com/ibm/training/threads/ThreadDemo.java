@@ -1,10 +1,24 @@
 package com.ibm.training.threads;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 public class ThreadDemo {
 
 	public static void main(String[] args) throws InterruptedException {
 		//byExtendingThread();
-		byImplementingRunnable();
+		//byImplementingRunnable();
+		threadSafeDS();
+	}
+
+	private static void threadSafeDS() {
+		Map<String, String> simpleHM = new HashMap<>(); // is NOT thread-safe
+		
+		Map<String,String> syncHM = Collections.synchronizedMap(new HashMap<>()); //all methods are synchronized
+		
+		Map<String,String> concHM = new ConcurrentHashMap<>(); // thread-safe and high performance ds
 	}
 
 	private static void byImplementingRunnable() throws InterruptedException {
