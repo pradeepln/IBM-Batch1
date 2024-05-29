@@ -20,6 +20,17 @@ public class LiteralDemo {
 		System.out.println(c);
 		int i = c; //implicit type cast at work here
 		System.out.println(i);
+		
+		int iLit = 100;
+		int octalLit = 0123;
+		System.out.println(octalLit);
+		int hexLit = 0x1231a;
+		System.out.println(hexLit);
+		
+		char indianChar = '\u0c85';
+		System.out.println(indianChar);
+		
+		System.out.println("\u0c85\u0c86");
 	}
 	
 	public static void m1(int x) {
