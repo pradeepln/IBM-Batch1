@@ -17,6 +17,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
 
 public class SimpleFrameApp extends Frame implements ActionListener{
 	
@@ -28,6 +32,7 @@ public class SimpleFrameApp extends Frame implements ActionListener{
 	MenuItem exit = new MenuItem("Exit");
 	
 	TextArea textArea = new TextArea();
+	String absoluteFilePath = null;
 	
 	public SimpleFrameApp() {
 		super("This is My Java AWT App!");
@@ -61,6 +66,21 @@ public class SimpleFrameApp extends Frame implements ActionListener{
 		case "Open":
 			performOpen();
 			break;
+		case "Save":
+			performSave();
+			break;
+		}
+	}
+
+	private void performSave() {
+		String text = textArea.getText();
+		
+		try(BufferedWriter out = new BufferedWriter(new FileWriter(absoluteFilePath));) {
+			
+			out.write(text);
+			out.flush();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -68,7 +88,20 @@ public class SimpleFrameApp extends Frame implements ActionListener{
 		FileDialog fd = new FileDialog(this, "Select File", FileDialog.LOAD);
 		fd.setVisible(true);
 		String file = fd.getFile();
-		System.out.println(file);
+		String dir = fd.getDirectory();
+		absoluteFilePath = dir+file;
+		
+		try(FileReader fr = new FileReader(dir + file);) {
+			
+			BufferedReader reader = new BufferedReader(fr);
+			textArea.setText("");
+			String line;
+			while ((line = reader.readLine()) != null) {
+				textArea.append(line+"\n");
+			} 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	
